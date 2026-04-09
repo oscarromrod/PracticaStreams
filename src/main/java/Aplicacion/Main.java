@@ -2,11 +2,9 @@ package Aplicacion;
 
 import Models.Registro;
 
+import java.security.PublicKey;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Main {
@@ -70,8 +68,35 @@ public class Main {
                 .anyMatch(r -> r.getTemperatura() > 30 && r.getHumedad() > 90 && r.getFechaHora().equals(LocalDateTime.now()));
     }
 
+    //7. Muestra 10 registros saltándote los 5 primeros
+    public List<Registro> saltar5primeros(){
+        return registros.stream()
+                .skip(5)
+                .limit(10)
+                .collect(Collectors.toList());
+    }
 
+    //8. Muestra los registros ordenados por fecha (sorted(Comparator))
+    public List<Registro> fechaOrdenada(){
+        return registros.stream()
+                .sorted(Comparator.comparing(Registro::getFechaHora).reversed())
+                .collect(Collectors.toList());
+    }
 
+    //9. Cuenta los registros que tengan temperatura mayor a 35 grados (count()).
+    public Long contarTemperatura(){
+        return registros.stream()
+                .filter(registro -> registro.getTemperatura() > 35.0)
+                .count();
+    }
+
+    //10. Calcular la temperatura promedio de todos los registros (transformarlo en Stream<Double> y
+    //llamar a average()).
+    public OptionalDouble promedio(){
+        return registros.stream()
+                .mapToDouble(Registro::getTemperatura)
+                .average();
+    }
 
     static void main() {
        Main app = new Main();
@@ -91,12 +116,30 @@ public class Main {
         IO.println("----CONSULTA 5----");
         app.teperaturaMinima().ifPresent(IO::println);
 
-        IO.println("----CONSULTA 5----");
+        IO.println("----CONSULTA 6----");
         if (app.verificar()) {
             IO.println("Encontrado");
         } else {
             IO.println("No encontrado");
         }
+
+        IO.println("----CONSULTA 7----");
+        app.saltar5primeros().forEach(IO::println);
+
+        IO.println("----CONSULTA 8----");
+        app.fechaOrdenada().forEach(IO::println);
+
+        IO.println("----CONSULTA 9----");
+        IO.println(app.contarTemperatura());
+
+        IO.println("----CONSULTA 10----");
+        if (app.promedio().isPresent()){
+            IO.println("La temperatura poromedio es: " + app.promedio().getAsDouble());
+        } else {
+            IO.println("No hay datos");
+        }
     }
+
+
 
 }
