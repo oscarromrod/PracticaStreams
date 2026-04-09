@@ -101,38 +101,38 @@ public class Main {
     static void main() {
        Main app = new Main();
 
-        IO.println("----CONSULTA 1----");
+        IO.println("================ CONSULTA 1 ================");
         app.mayor25Menor70().forEach(IO::println);
 
-        IO.println("----CONSULTA 2----");
+        IO.println("================ CONSULTA 2 ================");
         app.temperaturaMasAlta().ifPresent(IO::println);
 
-        IO.println("----CONSULTA 3----");
+        IO.println("================ CONSULTA 3 ================");
         app.listaFechasHoras().forEach(IO::println);
 
-        IO.println("----CONSULTA 4----");
+        IO.println("================ CONSULTA 4 ================");
         app.incrementar5().forEach(IO::println);
 
-        IO.println("----CONSULTA 5----");
+        IO.println("================ CONSULTA 5 ================");
         app.teperaturaMinima().ifPresent(IO::println);
 
-        IO.println("----CONSULTA 6----");
+        IO.println("================ CONSULTA 6 ================");
         if (app.verificar()) {
             IO.println("Encontrado");
         } else {
             IO.println("No encontrado");
         }
 
-        IO.println("----CONSULTA 7----");
+        IO.println("================ CONSULTA 7 ================");
         app.saltar5primeros().forEach(IO::println);
 
-        IO.println("----CONSULTA 8----");
+        IO.println("================ CONSULTA 8 ================");
         app.fechaOrdenada().forEach(IO::println);
 
-        IO.println("----CONSULTA 9----");
+        IO.println("================ CONSULTA 9 ================");
         IO.println(app.contarTemperatura());
 
-        IO.println("----CONSULTA 10----");
+        IO.println("================ CONSULTA 10 ================");
         if (app.promedio().isPresent()){
             IO.println("La temperatura poromedio es: " + app.promedio().getAsDouble());
         } else {
