@@ -1,14 +1,18 @@
+package Aplicacion;
+
 import Models.Registro;
 
-import java.security.PublicKey;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
-public static class App {
-    private final List<Registro> registros;
+public class Main {
+    private List<Registro> registros;
 
-    public App() {
+    public Main() {
         this.registros = new ArrayList<>();
         cargarDatosEjemplo();
     }
@@ -64,13 +68,13 @@ public static class App {
     public Boolean verificar(){
         return registros.stream()
                 .anyMatch(r -> r.getTemperatura() > 30 && r.getHumedad() > 90 && r.getFechaHora().equals(LocalDateTime.now()));
-        }
     }
 
 
 
+
     static void main() {
-        App app = new App();
+       Main app = new Main();
 
         IO.println("----CONSULTA 1----");
         app.mayor25Menor70().forEach(IO::println);
@@ -95,4 +99,4 @@ public static class App {
         }
     }
 
-
+}
